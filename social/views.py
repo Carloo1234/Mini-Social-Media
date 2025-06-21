@@ -25,7 +25,11 @@ class UserCreationFormExtended(UserCreationForm):
 # Create your views here.
 
 def index(request):
-    return render(request, "social/index.html")
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("feed"))
+    else:
+        return HttpResponseRedirect(reverse("signup_view"))
+
 
 @login_required
 def feed(request):

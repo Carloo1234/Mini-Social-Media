@@ -248,8 +248,9 @@ form{
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  background: #f8f9fa;
+  background: #fff;
   border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .form-group {
@@ -318,4 +319,8 @@ form{
 
 .logout-btn:hover{
     background-color: rgb(183, 30, 30);
+}
+
+.auth{
+    margin-top: 50px;
 }

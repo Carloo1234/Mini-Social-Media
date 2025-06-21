@@ -65,6 +65,8 @@
   {% if form.non_field_errors %}
     <div class="error-text">{{ form.non_field_errors.0 }}</div>
   {% endif %}
+  <br>
+  <a class="auth" href="{% url 'login_view' %}">Already have an account? Log in!</a>
 </form>
     </div>
 {% endblock %}

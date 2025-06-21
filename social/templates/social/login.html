@@ -39,6 +39,8 @@
   {% if form.non_field_errors %}
     <div class="error-text">{{ form.non_field_errors.0 }}</div>
   {% endif %}
+  <br>
+  <a class="auth" href="{% url 'signup_view' %}">Dont have an account? Sign up!</a>
 </form>
 </div>
 {% endblock %}
