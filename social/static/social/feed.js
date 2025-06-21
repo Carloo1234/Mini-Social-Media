@@ -17,9 +17,6 @@ function handleLike(btn){
         )})
 }
 
-function handleComment(btn){
-
-}
 
 
 function updateLikeUI(btn, liked, likes_count){
@@ -34,6 +31,7 @@ function updateLikeUI(btn, liked, likes_count){
     }
     btn.nextElementSibling.textContent = likes_count
 }
+
 
 function getCSRFToken(){
     return document.cookie.split("; ")

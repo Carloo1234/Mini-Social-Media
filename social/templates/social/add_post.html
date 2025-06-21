@@ -1,0 +1,14 @@
+{% extends 'social/layout.html' %}
+
+{% block body %}
+<a class="back-btn" href="{% url 'feed' %}"><i class="fa-solid fa-arrow-left"></i></a>
+<div class="main">
+    <form action="" method="post">
+        {% csrf_token %}
+            <textarea required class="post-field" name="content" placeholder="Enter a post"></textarea>
+            <div>
+                <button class="post-btn" type="submit" name="action">Post</button>
+            </div>
+    </form>
+</div>
+{% endblock %}

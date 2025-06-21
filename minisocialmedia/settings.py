@@ -33,7 +33,8 @@ AUTH_USER_MODEL = 'social.User'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-
+TIME_ZONE = 'Africa/Cairo'  # Or change to your local timezone
+USE_TZ = True
 # Application definition
 
 INSTALLED_APPS = [

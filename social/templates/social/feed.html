@@ -7,17 +7,26 @@
 {% endblock %}
 
 {% block body %}
+<a href="{% url 'logout_view' %}" class="logout-btn"><span>Logout</span>  <i class="fa-solid fa-right-from-bracket"></i></a>
+<a class="add-btn" href="{% url 'add_post' %}"><i class="fa-solid fa-plus"></i></i></a>
     <div class="main">
         <h1>Posts</h1>
         {% for post in posts %}
             <div class="post">
                 <div class="header">
                     <div class="info">
-                        <img src="{{ post.user.profile_pic.url }}" alt="pfp">
+                        <img class="post-pfp" src="{{ post.user.profile_pic.url }}" alt="pfp">
                         <div class="name-username">
                             <span class="name">{{post.user.full_name}}</span>
                             <span class="username">@{{post.user.username}}</span>
                         </div>
+                         {% if post.user == user %}
+                        <form action="" method="post" class="del-form-post">
+                            {% csrf_token %}
+                            <input type="hidden" name="post_id" value="{{ post.id }}">
+                            <button class="del-post-btn" type="submit" name="action" value="delete"><i class="fa-solid fa-trash"></i></button>
+                        </form>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="content">
@@ -35,8 +44,8 @@
                         </button>
                         <span class="like-count">{{ post.likes.count }}</span>
                     </div>
-                    <div class="comment">
-                        <button class="comment-button" data-post-id="{{post.id}}" onclick="handleComment(this)"><i class="fa-regular fa-comment"></i></button>
+                    <div class="comment-comp">
+                        <a class="comment-button" href="{% url 'load_comments' post.id %}"><i class="fa-regular fa-comment"></i></a>
                         <span class="comment-count">{{ post.comments.count }}</span>
                     </div>
                 </div>

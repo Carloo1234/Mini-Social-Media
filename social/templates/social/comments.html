@@ -1,5 +1,52 @@
 {% extends 'social/layout.html' %}
 
 {% block body %}
-<h1>Comments</h1>
+<a class="back-btn" href="{% url 'feed' %}"><i class="fa-solid fa-arrow-left"></i></a>
+<div class="main">
+    <div class="post">
+    <div class="header">
+        <div class="info">
+            <img class="post-pfp" src="{{ post.user.profile_pic.url }}" alt="pfp">
+            <div class="name-username">
+                <span class="name">{{post.user.full_name}}</span>
+                <span class="username">@{{post.user.username}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        {{ post.content }}
+    </div>
+    <div class="comments">
+        <form class="comment-form" action="" method="post">
+            {% csrf_token %}
+            <textarea required class="comment-field" name="content" placeholder="Enter a comment"></textarea>
+            <div>
+                <button class="comment-btn" type="submit" name="action" value="add">Comment</button>
+            </div>
+        </form>
+        {% for comment in comments %}
+            <div class="comment">
+                <img class="comment-pfp comment-left-side" src="{{ comment.user.profile_pic.url }}" alt="pfp">
+                <div class="comment-right-side">
+                    <div class="right-top">
+                        <span class="comment-username">@{{ comment.user.username }}</span>
+                        <span class="comment-date">{{  comment.created_at }}</span>
+                        {% if comment.user == user %}
+                        <form action="" method="post" class="del-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                            <button class="del-comment-btn" type="submit" name="action" value="delete"><i class="fa-solid fa-trash"></i></button>
+                        </form>
+                        {% endif %}
+                    </div>
+                    <div class="comment-content">{{ comment.content }}</div>
+                </div>
+            </div>
+        {% empty %} 
+            <p>No comments</p>
+        {% endfor %}
+    </div>
+</div>
+</div>
+
 {% endblock %}
