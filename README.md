@@ -8,7 +8,7 @@ Users can sign up, post, like, comment, edit their profiles, and more. This proj
 
 ## 🚀 Live Demo
 
-🌐 [carloo.pythonanywhere.com](http://carloo.pythonanywhere.com)
+🌐 [carlo0123.pythonanywhere.com](http://carlo0123.pythonanywhere.com)
 
 ---
 
@@ -17,8 +17,8 @@ Users can sign up, post, like, comment, edit their profiles, and more. This proj
 <!-- Add your own screenshots below -->
 <img src="screenshots/feed.png" width="600" />
 <img src="screenshots/profile.png" width="600" />
-<img src="screenshots/edit_profile.png" width="600" />
-<img src="screenshots/comments.png" width="600" />
+<img src="screenshots/profile_edit.png" width="600" />
+<img src="screenshots/comment.png" width="600" />
 
 ---
 
@@ -30,8 +30,6 @@ Users can sign up, post, like, comment, edit their profiles, and more. This proj
 - ❤️ Like system (toggle-like)
 - 🧑‍💻 Editable user profiles (with profile pictures)
 - 👤 View other users' profiles
-- 🗂️ Media upload handling
-- 🌐 Fully deployed & live on PythonAnywhere
 
 ---
 
