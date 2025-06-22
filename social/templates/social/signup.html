@@ -3,10 +3,11 @@
 {% block body %}
     <div class="main">
         <form method="POST" class="signup-form">
+          <h1><strong>Sign Up</strong></h1> <br> <br>
   {% csrf_token %}
 
   <div class="form-group">
-    <label for="{{ form.full_name.id_for_label }}" class="form-label">Username</label>
+    <label for="{{ form.full_name.id_for_label }}" class="form-label">Full Name</label>
     <input type="text"
            name="{{ form.full_name.html_name }}"
            id="{{ form.full_name.id_for_label }}"

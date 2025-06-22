@@ -1,7 +1,11 @@
 {% extends 'social/layout.html' %}
+{% load humanize %}
 
+{% block header %}
+    <a class="back-btn" href="{% url 'feed' %}"><i class="fa-solid fa-arrow-left"></i></a>
+    <span class="page-title">Comments</span>
+{% endblock %}
 {% block body %}
-<a class="back-btn" href="{% url 'feed' %}"><i class="fa-solid fa-arrow-left"></i></a>
 <div class="main">
     <div class="post">
     <div class="header">
@@ -30,7 +34,7 @@
                 <div class="comment-right-side">
                     <div class="right-top">
                         <span class="comment-username">@{{ comment.user.username }}</span>
-                        <span class="comment-date">{{  comment.created_at }}</span>
+                        <span class="comment-date">{{  comment.created_at|naturaltime }}</span>
                         {% if comment.user == user %}
                         <form action="" method="post" class="del-form">
                             {% csrf_token %}

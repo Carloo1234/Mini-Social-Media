@@ -1,0 +1,32 @@
+{% extends 'social/layout.html' %}
+
+{% block header %}
+    <a class="back-btn" href="{% url 'feed' %}"><i class="fa-solid fa-arrow-left"></i></a>
+    <span class="page-title">Edit</span>
+{% endblock %}
+
+{% block body %}
+<div class="user-main">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="user-box">
+        {% if user == useri %}
+            <a class="edit-profile-btn"><i class="fa-solid fa-pen-to-square"></i></a>
+        {% endif %}
+        <img class="user-pfp" src="{{ user.profile_pic.url }}" alt="pfp">
+        <label for="profile-pic">Change Profile Picture</label>
+        <input class="file-select" type="file" name="profile_pic" id="profile-pic" accept="image/*"><br>
+        <label>
+            <input type="checkbox" name="remove_pfp"> Remove Profile Picture
+        </label> <br>
+        <label for="full-name">Full Name</label>
+        <input id="full-name" name="full_name" class="full-name-field" type="text" value="{{ user.full_name }}">
+        <label for="username">Username</label>
+        <input id="username" name="username" class="username-field" type="text" value="{{ user.username }}">
+        <label for="bio">Bio</label>
+        <textarea id="bio" class="bio-field" name="bio">{{ user.bio }}</textarea>
+        <input type="submit" value="Confirm" class="btn-primary">
+    </div>
+    </form>
+</div>
+{% endblock %}

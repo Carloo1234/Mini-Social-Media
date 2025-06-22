@@ -10,5 +10,8 @@ urlpatterns = [
     path("feed/add_post", views.add_post, name="add_post"),
     path("login", views.login_view, name="login_view"),
     path("logout/", views.logout_view, name="logout_view"),
-    path("signup", views.signup_view, name="signup_view")
+    path("signup", views.signup_view, name="signup_view"),
+    path("user/<int:user_id>/", views.user_view, name="user"),
+    path("user/<int:user_id>/edit", views.edit_profile, name="edit_profile"),
+    
 ]

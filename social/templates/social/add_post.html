@@ -1,7 +1,11 @@
 {% extends 'social/layout.html' %}
 
+{% block header %}
+    <a class="back-btn" href="{% url 'feed' %}"><i class="fa-solid fa-arrow-left"></i></a>
+    <span class="page-title">Add post</span>
+{% endblock %}
+
 {% block body %}
-<a class="back-btn" href="{% url 'feed' %}"><i class="fa-solid fa-arrow-left"></i></a>
 <div class="main">
     <form action="" method="post">
         {% csrf_token %}

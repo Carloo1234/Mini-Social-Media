@@ -1,0 +1,20 @@
+{% extends 'social/layout.html' %}
+
+{% block header %}
+    <a class="back-btn" href="{% url 'feed' %}"><i class="fa-solid fa-arrow-left"></i></a>
+    <span class="page-title">User</span>
+{% endblock %}
+
+{% block body %}
+<div class="user-main">
+    <div class="user-box">
+        {% if user == useri %}
+            <a href="{% url 'edit_profile' user.id %}" class="edit-profile-btn"><i class="fa-solid fa-pen-to-square"></i></a>
+        {% endif %}
+        <img class="user-pfp" src="{{ useri.profile_pic.url }}" alt="pfp">
+        <span class="user-full-name">{{ useri.full_name }}</span>
+        <span class="user-username">@{{ useri.username }}</span>
+        <div class="user-bio">{{ useri.bio }}</div>
+    </div>
+</div>
+{% endblock %}

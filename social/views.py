@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from .models import Post, Like, Comment
-from django.http import JsonResponse, HttpResponseRedirect
+from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django import forms
+from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -122,3 +123,35 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
+
+@login_required
+def user_view(request, user_id):
+    user = User.objects.get(pk=user_id)
+    return render(request, "social/user.html", {'useri': user})
+
+@login_required
+def edit_profile(request, user_id):
+    if not user_id == request.user.id:
+        return HttpResponse("Not allowed!")
+    if request.method == 'POST':
+        user = request.user
+        new_username = request.POST.get('username')
+
+        # check if username exists and it's not the current user
+        if User.objects.filter(username=new_username).exclude(pk=user.pk).exists():
+            messages.error(request, "That username is already taken.")
+            return render(request, 'social/edit_profile.html')
+        
+        user.full_name = request.POST.get('full_name')
+        user.username = request.POST.get('username')
+        user.bio = request.POST.get('bio')
+        if 'remove_pfp' in request.POST:
+            user.profile_pic.delete(save=False)  # removes the file from storage
+            user.profile_pic = 'default.png'
+        elif 'profile_pic' in request.FILES:
+            user.profile_pic = request.FILES['profile_pic']
+        user.save()
+        messages.success(request, "Profile updated successfully!")
+        return HttpResponseRedirect(reverse('user', args=(user.id,)))
+    
+    return render(request, "social/edit_profile.html")
